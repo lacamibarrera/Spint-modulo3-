@@ -1,0 +1,174 @@
+//CONTEXTO
+Se requiere utilizar funciones creadas por el usuario, para distinto tipo de datos (booleano, número, caracter, fechas
+y horas) con parámetros, uso de arreglos, funciones en JavaScript y Conceptos básicos de Objetos en Javascript.
+PROBLEMA
+En un área de Recursos Humanos se tienen un conjunto de necesidades que resolver referidas a lógicas de cálculo, uso
+de condicionales, manejo de tipos de datos y respuestas a consultas de operación común.
+Se tienen que construir funciones que obtengan datos del usuario y entreguen respuestas con cálculos numéricos y
+decisiones lógicas en base a los datos obtenidos del usuario.
+Se requiere:
+Crear un menú que permita:
+
+o Ingresar los datos del usuario (formulario html y validaciones JavaScript)
+o Entregar las respuestas asociadas a cálculos con fechas (usando función en JavaScript)
+o Entregar las respuestas a cálculos de sueldo / valor de cargas familiares (usando función en JavaScript)
+o Entregar todos los datos del Objeto persona, usando los datos iniciales y las funciones de cálculo.
+
+Las respuestas deben ser entregadas a la pantalla.
+Para la respuesta a) deberán ser ingresados los datos de:
+
+o NOMBRE (String)
+o APELLIDOS (String)
+o Fecha de nacimiento (fecha o string, según decida el grupo)
+o Si es o no el trabajador activo (lógico si/no)
+o Fecha de ingreso a la organización (fecha o string, según decida el grupo)
+o Sueldo actual (número entero)
+o Sueldo semestre anterior (número entero)
+o Valor lógico para indicar si corresponde cargas familiares o no, para trabajador activo (lógico si/no)
+o Cantidad de cargas familiares (número, sólo leerá a quienes si corresponda)
+
+Para la respuesta b) deberán ser entregados los datos de:
+o Su permanencia en la organización es de: 999 días
+o Su permanencia en la organización es de: 999 meses
+o Su permanencia en la organización es de: 99 años y 99 meses y 99 días
+o Para completar el año de permanencia faltan: 999 días
+
+Para la respuesta c) deberán ser entregados los datos de:
+
+o Nombre y Apellidos
+o Sueldo actual
+o Monto de Carga familiar
+o Sueldo Final (al que se le suma el valor de carga familiar.
+
+Para la respuesta c) deberán ser entregados los datos de:
+
+o NOMBRE (String)
+o APELLIDOS (String)
+o Fecha de nacimiento (fecha o string, según decida el grupo)
+o Si es o no el trabajador activo (lógico si/no)
+o Fecha de ingreso a la organización (fecha o string, según decida el grupo)
+o Sueldo actual (número entero)
+o Sueldo semestre anterior (número entero)
+o Valor lógico para indicar si corresponde cargas familiares o no, para trabajador activo (lógico si/no)
+o Cantidad de cargas familiares (número, valor 0 si no tiene)
+o Monto de Carga familiar
+o Sueldo Final (al que se le suma el valor de carga familiar.
+Se entregará archivo con formulario html y archivo con los JavaScript.
+
+Consideraciones generales
+SOLUCIÓN
+Se cuenta con las siguientes funciones base para construir la(s) funciones que tiene que entregar el grupo:
+const nombreDelDiaSegunFecha = fecha => [
+'domingo',
+'lunes',
+'martes',
+'miércoles',
+'jueves',
+'viernes',
+'sábado',
+][new Date(fecha).getDay()];
+const fechasParaProbar = [
+"2013-01-18 17:00:00",
+"2013-08-03 10:00:00",
+"1997-06-21 22:00:00",
+];
+fechasParaProbar.forEach(fecha => {
+console.log(`En ${fecha} fue ${nombreDelDiaSegunFecha(fecha)}`);
+});
+
+Se puede verificar en: https://jsbin.com/ruwelufexa/edit?js,console
+Para el cálculo de la edad usar como base el siguiente script
+function calcularEdad()
+{
+var fecha=document.getElementById("user_date").value;
+if(validate_fecha(fecha)==true)
+{
+// Si la fecha es correcta, calculamos la edad
+var values=fecha.split("-");
+var dia = values[2];
+var mes = values[1];
+var ano = values[0];
+// cogemos los valores actuales
+var fecha_hoy = new Date();
+var ahora_ano = fecha_hoy.getYear();
+var ahora_mes = fecha_hoy.getMonth()+1;
+var ahora_dia = fecha_hoy.getDate();
+// realizamos el calculo
+var edad = (ahora_ano + 1900) - ano;
+if ( ahora_mes < mes )
+{
+edad--;
+}
+if ((mes == ahora_mes) && (ahora_dia < dia))
+{
+edad--;
+}
+if (edad > 1900)
+{
+edad -= 1900;
+}
+// calculamos los meses
+var meses=0;
+if(ahora_mes>mes)
+meses=ahora_mes-mes;
+if(ahora_mes<mes)
+meses=12-(mes-ahora_mes);
+if(ahora_mes==mes && dia>ahora_dia)
+meses=11;
+// calculamos los dias
+var dias=0;
+if(ahora_dia>dia)
+dias=ahora_dia-dia;
+if(ahora_dia<dia)
+{
+ultimoDiaMes=new Date(ahora_ano, ahora_mes, 0);
+dias=ultimoDiaMes.getDate()-(dia-ahora_dia);
+}
+
+document.getElementById("result").innerHTML="Tienes "+edad+" años, "+meses+" meses y "+dias+" días";
+}else{
+document.getElementById("result").innerHTML="La fecha "+fecha+" es incorrecta";
+}
+}
+</script>
+Se puede verificar su utilización en:
+
+https://www.lawebdelprogramador.com/codigo/JavaScript/2380-Calcular-la-edad-desde-una-fecha-dada-en-
+HTML5.html
+
+Para el cálculo de cargas familiares se usan los datos de Previred: https://www.previred.com/indicadores-
+previsionales/
+
+El valor a usar como renta es el monto del semestre anterior.
+Requerimientos de los participantes
+Conocimientos previos
+Conocimiento de HTML y uso de
+javascript
+
+Actitudes para el trabajo
+● Cumplimiento de plazos.
+● Buenas prácticas de
+codificación.
+● Diseño y Estructura.
+● Trabajo en equipo.
+● Optimización del tiempo.
+
+Valores
+● Tiempo de resolución.
+● Enfoque al requerimiento.
+● Estructura de Solución.
+
+Objetivo General de Aprendizaje
+Realiza funciones JavaScript,
+usando lógica, ingreso de datos
+de distinto tipo, cálculos
+aritméticos y despliegue de
+resultados
+
+El participante al finalizar el proyecto será capaz de:
+• Ingresar datos solicitados, crear funciones y entregar los
+resultados.
+
+Duración del proyecto 1 clase
+Productos para obtener durante la realización del proyecto
+- un programa con funciones javascript que resuelvan los requerimientos del usuario.
