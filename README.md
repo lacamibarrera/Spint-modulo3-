@@ -1,2 +1,2 @@
-# Spint-modulo3-
+# Sprint-modulo3-
 Trabajo final del modulo 3
