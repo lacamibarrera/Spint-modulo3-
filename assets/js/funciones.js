@@ -164,35 +164,6 @@ function calcularEdad(fecha) {
     return { años: edad, meses: mes, dias: dia };
 }
 
-//Calcula cuantos dias faltan para siguiente cumpleaños
-function esCumpleaños(fecha) {
-    let cumpleanos = new Date(fecha);
-    let hoy = new Date();
-
-    if (cumpleanos.getDate() === hoy.getDate() && cumpleanos.getMonth() === hoy.getMonth()) {
-        return true;
-    } else {
-        // Compara la fecha de cumpleaños sin tener en cuenta el año
-        let fechaSinAnioCumple = new Date(0, cumpleanos.getMonth(), cumpleanos.getDate());
-        let fechaSinAnioHoy = new Date(0, hoy.getMonth(), hoy.getDate());
-        return fechaSinAnioCumple.getTime() === fechaSinAnioHoy.getTime();
-    }
-}
-
-function diasParaCumpleaños(fecha) {
-    let cumpleanos = new Date(fecha + "T00:00:00Z"); // agregar 'T00:00:00Z' y usar UTC
-    let hoy = new Date();
-    let proximoCumple = new Date(hoy.getUTCFullYear(), cumpleanos.getUTCMonth(), cumpleanos.getUTCDate()); // usar UTC
-
-    if (proximoCumple < hoy) {
-        proximoCumple.setUTCFullYear(proximoCumple.getUTCFullYear() + 1); // usar UTC
-    }
-
-    const unDia = 1000 * 60 * 60 * 24;
-    const diasFaltantes = Math.floor((proximoCumple - hoy) / unDia);
-    return diasFaltantes;
-}
-
 function mostrarEdad() {
     const fechaCalendario = document.getElementById("fecha-nacimiento").value;
 
@@ -209,22 +180,11 @@ function mostrarEdad() {
         'viernes',
         'sábado',
     ][(new Date(fechaCalendario).getDay() +1) % 7];
-
+  
     // Actualizar el contenido del elemento HTML con el resultado
     let resultado = document.getElementById('resultado')
     resultado.innerHTML = "Tienes " + edad.años + " años, " + edad.meses + " meses y " + edad.dias + " días y naciste un " + nombreDiaNacimiento;
-
-    // Verifica si es el cumpleaños con la funcion esCumpleaños()
-    if (esCumpleaños(fechaCalendario) === true) {
-        resultado.innerHTML += " ¡Feliz cumpleaños!";
-    } else {
-        // Calcula los días que faltan para el próximo cumpleaños
-        const diasParaCumple = diasParaCumpleaños(fechaCalendario);
-        resultado.innerHTML += ". Tu próximo cumpleaños es en " + diasParaCumple + " días.";
-    }
-}
-
-
+  }
 // TIEMPO DENTRO DE LA ORGANIZACIÓN
 
 function obtenerFechas() {
@@ -260,5 +220,4 @@ function calcularTiempo(fechaInicial, fechaFinal) {
     // Crea un mensaje con el tiempo transcurrido en años, meses y días
     let mensaje = "Lleva " + tiempo.anios + " años, " + tiempo.meses + " meses y " + tiempo.dias + " días en nuestra organización.";
     // Muestra el mensaje en HTML 
-    document.getElementById("tiempoOrganizacion").innerHTML = mensaje;
-  }
+    document.getElementById("tiempoOrganizacion").innerHTML = mensaje; }
